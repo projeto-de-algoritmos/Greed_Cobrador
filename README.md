@@ -1,45 +1,22 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
-
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+# Cobrador
+**Conteúdo da Disciplina**: Greed<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 18/0019066  |  Isabella Carneiro |
+| 19/0036940  |  Rafael Fernandes |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+Nosso projeto tem o objetivo de simular um cobrador de ônibus que encontra a menor quantidade de moedas que satisfaça o troco necessário. Isso só é possível implementando um algoritmo ambicioso.   
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: HTML e JavaScript<br>
+Pré-requisitos:
+- [Node.js](https://nodejs.org/en)
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
-
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
-
+Para testar o projeto de maneira rápida basta clicar [aqui](https://projeto-de-algoritmos.github.io/Greed_Cobrador/).
