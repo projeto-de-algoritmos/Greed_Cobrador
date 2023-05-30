@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Cálculo troco</title>
+    <script type="text/javascript">
+        const calculaTroco = () =>
+        {
+            const moedas = [2000,1000,500,200,100,50,25,10,5,1];
+            const valor = document.trocoForm.elements["preco"].value; 
+            const cedulaUtilizada = document.trocoForm.elements["valorPago"].value;
+            const trocoTotal = 100*cedulaUtilizada - 100*valor;
+            var troco = 100*cedulaUtilizada - 100*valor;
+            var count = 1;
+            const listaMoedas = [];
+            const vetorMoedas = [];
+            for (let i=0; i<moedas.length; i++)
+            {
+                while (troco>= moedas[i])
+                {
+                    listaMoedas.push(moedas[i]);
+                    troco = troco - moedas[i];
+                }
+                if (troco == 0) break;
+            }
+            for(let i=0; i<listaMoedas.length;i++)
+            {
+                if(listaMoedas[i]==listaMoedas[i+1])
+                count++;
+                else
+                {
+                if(listaMoedas[i]>100)
+                {
+                    if(count == 1)
+                    vetorMoedas.push("Uma cédula de "+listaMoedas[i]/100+" reais");
+                    else
+                    vetorMoedas.push(count+" cédulas de "+listaMoedas[i]/100+" reais");
+                }
+                if(listaMoedas[i]==100)
+                {
+                    if(count == 1)
+                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]/100+" real");
+                    else
+                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]/100+" real");
+                }
+                if(listaMoedas[i]<100 && listaMoedas[i] >1)
+                {
+                    if(count == 1)
+                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]+" centavos");
+                    else
+                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]+" centavos");
+                }
+                if(listaMoedas[i]==1)
+                {
+                    if(count == 1)
+                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]+" centavo");
+                    else
+                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]+" centavo");
+                }
+                count=1;
+                }
+            }
+            alert(trocoTotal/100+ " " +vetorMoedas);
+        };
+
+    </script>
+</head>
+<body>
+    <form id="trocoForm" name="trocoForm" action="#">
+        <label for="preco">Insira o preço da passagem:</label>
+        <input type="text" id="preco" name="preco">
+        <br>
+        <label for="preco">Insira o valor pago:</label>
+        <input type="text" id="valorPago" name="valorPago">
+        <br>
+        <input type="submit" value="Calcular" onclick="calculaTroco()">
+        <br>
+        <div id="resultado"></div>
+        
+    </form>
+</body>
+</html>
