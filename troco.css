@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#titulo {
+    margin-left: 30%;
+    font-family: sans-serif;
+    color: #380861;
+    align-items: center;
+}
+body{
+    background-color: #F0F8FF;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #59429d;
+    margin-left: 36%;
+    margin-top: 2%;
+    justify-content: center;
+    
+}
+.campos{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 5px;
+    min-height: 20px;
+    border-radius: 5px;
+}
+#calcular{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 5px;
+    min-height: 20px;
+}
+div, form{
+    margin-top: 2%;
+    max-width: 50%;
+}

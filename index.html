@@ -2,80 +2,91 @@
 <html lang="pt-br">
 <head>
     <title>Cálculo troco</title>
+    <link rel="stylesheet" type="text/css" href="troco.css" media="screen"> 
     <script type="text/javascript">
         const calculaTroco = () =>
         {
             const moedas = [2000,1000,500,200,100,50,25,10,5,1];
-            const valor = document.trocoForm.elements["preco"].value; 
-            const cedulaUtilizada = document.trocoForm.elements["valorPago"].value;
+            const valor = document.trocoForm.elements["preco"].value.replace(",",".");
+            const cedulaUtilizada = document.trocoForm.elements["valorPago"].value.replace(",",".");
             const trocoTotal = 100*cedulaUtilizada - 100*valor;
-            var troco = 100*cedulaUtilizada - 100*valor;
-            var count = 1;
-            const listaMoedas = [];
-            const vetorMoedas = [];
-            for (let i=0; i<moedas.length; i++)
+            if (trocoTotal >=0)
             {
-                while (troco>= moedas[i])
+                var troco = 100*cedulaUtilizada - 100*valor;
+                var count = 1;
+                const listaMoedas = [];
+                const vetorMoedas = [];
+                for (let i=0; i<moedas.length; i++)
                 {
-                    listaMoedas.push(moedas[i]);
-                    troco = troco - moedas[i];
+                    while (troco>= moedas[i])
+                    {
+                        listaMoedas.push(moedas[i]);
+                        troco = troco - moedas[i];
+                    }
+                    if (troco == 0) break;
                 }
-                if (troco == 0) break;
+                for(let i=0; i<listaMoedas.length;i++)
+                {
+                    if(listaMoedas[i]==listaMoedas[i+1])
+                    count++;
+                    else
+                    {
+                    if(listaMoedas[i]>100)
+                    {
+                        if(count == 1)
+                        vetorMoedas.push(" Uma cédula de "+listaMoedas[i]/100+" reais");
+                        else
+                        vetorMoedas.push(" "+count+" cédulas de "+listaMoedas[i]/100+" reais");
+                    }
+                    if(listaMoedas[i]==100)
+                    {
+                        if(count == 1)
+                        vetorMoedas.push(" Uma moeda de "+listaMoedas[i]/100+" real");
+                        else
+                        vetorMoedas.push(" "+count+" moedas de "+listaMoedas[i]/100+" real");
+                    }
+                    if(listaMoedas[i]<100 && listaMoedas[i] >1)
+                    {
+                        if(count == 1)
+                        vetorMoedas.push(" Uma moeda de "+listaMoedas[i]+" centavos");
+                        else
+                        vetorMoedas.push(" "+count+" moedas de "+listaMoedas[i]+" centavos");
+                    }
+                    if(listaMoedas[i]==1)
+                    {
+                        if(count == 1)
+                        vetorMoedas.push(" Uma moeda de "+listaMoedas[i]+" centavo");
+                        else
+                        vetorMoedas.push(" "+count+" moedas de "+listaMoedas[i]+" centavo");
+                    }
+                    count=1;
+                    }
             }
-            for(let i=0; i<listaMoedas.length;i++)
-            {
-                if(listaMoedas[i]==listaMoedas[i+1])
-                count++;
-                else
-                {
-                if(listaMoedas[i]>100)
-                {
-                    if(count == 1)
-                    vetorMoedas.push("Uma cédula de "+listaMoedas[i]/100+" reais");
-                    else
-                    vetorMoedas.push(count+" cédulas de "+listaMoedas[i]/100+" reais");
-                }
-                if(listaMoedas[i]==100)
-                {
-                    if(count == 1)
-                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]/100+" real");
-                    else
-                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]/100+" real");
-                }
-                if(listaMoedas[i]<100 && listaMoedas[i] >1)
-                {
-                    if(count == 1)
-                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]+" centavos");
-                    else
-                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]+" centavos");
-                }
-                if(listaMoedas[i]==1)
-                {
-                    if(count == 1)
-                    vetorMoedas.push("Uma moeda de "+listaMoedas[i]+" centavo");
-                    else
-                    vetorMoedas.push(count+" moedas de "+listaMoedas[i]+" centavo");
-                }
-                count=1;
-                }
-            }
-            alert(vetorMoedas);
-        };
+            document.getElementById('resultado').innerHTML = "Troco:"+vetorMoedas;
+            } else 
+            document.getElementById('resultado').innerHTML = "Dinheiro Insuficiente!";
+        }
+            
 
     </script>
 </head>
 <body>
-    <form id="trocoForm" name="trocoForm" action="#">
-        <label for="preco">Insira o preço da passagem:</label>
-        <input type="text" id="preco" name="preco">
+    <div>
+        <h1 id="titulo">Cálculo de Troco</h1>
+    
+    </div>
+    <form id="trocoForm" name="trocoForm" action="#" >
+        <label for="preco" >Insira o preço da passagem (R$):</label>
+        <input type="text" id="preco" class="campos" name="preco">
         <br>
-        <label for="preco">Insira o valor pago:</label>
-        <input type="text" id="valorPago" name="valorPago">
+        <label for="preco" >Insira o valor entregue pelo passageiro (R$):</label>
+        <input type="text" id="valorPago"class="campos" name="valorPago">
         <br>
-        <input type="submit" value="Calcular" onclick="calculaTroco()">
+        <input type="button" id="calcular" value="Calcular" onclick="calculaTroco()">
         <br>
-        <div id="resultado"></div>
-        
     </form>
+    <div>
+        <label id="resultado"></label>
+    </div>
 </body>
 </html>
